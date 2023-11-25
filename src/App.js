@@ -1,23 +1,19 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
-
+import HeroBanner from './component/HeroBanner';
+import MainPage from './component/MainPage';
+import Navbar from './component/Navbar';
+import AuthenticationModal from './component/AuthenticationModal';
 function App() {
+
+  const [logedIn, setLoggedIn] = useState(false);
+  console.log(logedIn)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='relative min-h-screen bg-richblack-900 flex flex-col overflow-x-hidden mb-10'>
+        <Navbar setLoggedIn={setLoggedIn}/>
+        <HeroBanner/>
+        <MainPage/>
+        {logedIn && <AuthenticationModal logedIn={logedIn} setLoggedIn={setLoggedIn}/>}
     </div>
   );
 }
